@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from './ui/card';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Label } from './ui/label';
-import { toast } from '../hooks/use-toast';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { toast } from '@/hooks/use-toast';
 import { Mail, Phone, MapPin, Linkedin, Send } from 'lucide-react';
-import { portfolioData } from '../mock';
+import { portfolioData } from '@/mock';
 
 const Contact = () => {
   const [formData, setFormData] = useState({

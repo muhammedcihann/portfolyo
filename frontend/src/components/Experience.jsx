@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Building2, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
-import { portfolioData } from '../mock';
+import { portfolioData } from '@/mock';
 
 const Experience = () => {
   return (

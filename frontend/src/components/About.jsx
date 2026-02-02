@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Briefcase, GraduationCap } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
-import { portfolioData } from '../mock';
+import { Card, CardContent } from '@/components/ui/card';
+import { portfolioData } from '@/mock';
 
 const About = () => {
   const stats = [

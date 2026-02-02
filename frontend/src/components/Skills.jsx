@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Progress } from './ui/progress';
-import { portfolioData } from '../mock';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import { portfolioData } from '@/mock';
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
