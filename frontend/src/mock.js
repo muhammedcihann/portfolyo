@@ -9,7 +9,8 @@ export const portfolioData = {
     linkedin: "linkedin.com/in/muhammedcihan",
     photo: "https://customer-assets.emergentagent.com/job_3b8264cf-fdb2-4ed5-b6df-ff18973d4669/artifacts/j33y9sp8_WhatsApp%20Image%202025-12-18%20at%2021.13.52_de4e3095.jpg",
     bio: "I am a senior computer engineering student and a System Engineer Assistant at Garanti BBVA Technology, where I focus on mainframe, middleware, and infrastructure systems. Specializing in CICS and MQ, I have gained hands-on experience in transaction management, message queue systems, and complex integration processes. My work involves developing scalable infrastructure solutions to ensure enterprise-level reliability and performance. I am continuously enhancing my expertise in infrastructure and mainframe technologies and am always open to exploring new technologies and professional collaborations.",
-    cvUrl: "/MuhammedCihan_CV_3.pdf"
+    cvUrl: "/MuhammedCihan_CV_3.pdf",
+    formspreeId: "xwvqwadl"
   },
 
   experience: [

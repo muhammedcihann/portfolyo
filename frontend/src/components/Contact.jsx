@@ -49,7 +49,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://formspree.io/f/xwvqwadl", {
+      const response = await fetch(`https://formspree.io/f/${portfolioData.personal.formspreeId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
