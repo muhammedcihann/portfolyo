@@ -28,11 +28,12 @@ const Projects = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
-    return () => sectionRef.current && observer.unobserve(sectionRef.current);
+    return () => currentRef && observer.unobserve(currentRef);
   }, []);
 
   return (

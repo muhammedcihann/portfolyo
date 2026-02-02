@@ -15,6 +15,15 @@ const Header = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navItems = React.useMemo(() => [
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Contact', href: '#contact' }
+  ], []);
+
   useEffect(() => {
     const sections = navItems.map(item => document.querySelector(item.href));
 
@@ -38,16 +47,7 @@ const Header = ({ theme, toggleTheme }) => {
         if (section) observer.unobserve(section);
       });
     };
-  }, []);
-
-  const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' }
-  ];
+  }, [navItems]);
 
   const scrollToSection = (e, href) => {
     e.preventDefault();
