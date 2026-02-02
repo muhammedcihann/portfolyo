@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowDown, Linkedin, Mail, FileText } from 'lucide-react';
-import { Button } from './ui/button';
-import { portfolioData } from '../mock';
+import { Button } from '@/components/ui/button';
+import { portfolioData } from '@/mock';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
