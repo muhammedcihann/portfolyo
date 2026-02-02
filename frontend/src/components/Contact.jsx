@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
-import { Mail, Phone, MapPin, Linkedin, Send } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Send, Github, Loader2 } from 'lucide-react';
 import { portfolioData } from '@/mock';
 
 const Contact = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => sectionRef.current && observer.unobserve(sectionRef.current);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -23,15 +45,36 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock submission
-    console.log('Form submitted:', formData);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://formspree.io/f/xwvqwadl", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your message. I'll get back to you soon!",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -42,16 +85,16 @@ const Contact = () => {
       href: `mailto:${portfolioData.personal.email}`
     },
     {
-      icon: <Phone className="h-5 w-5" />,
-      label: 'Phone',
-      value: portfolioData.personal.phone,
-      href: `tel:${portfolioData.personal.phone}`
-    },
-    {
       icon: <MapPin className="h-5 w-5" />,
       label: 'Location',
       value: portfolioData.personal.location,
       href: null
+    },
+    {
+      icon: <Github className="h-5 w-5" />,
+      label: 'GitHub',
+      value: 'Connect on GitHub',
+      href: `https://github.com/${portfolioData.personal.github}`
     },
     {
       icon: <Linkedin className="h-5 w-5" />,
@@ -62,8 +105,8 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4">
+    <section id="contact" ref={sectionRef} className="py-20 bg-white dark:bg-slate-900">
+      <div className={`container mx-auto px-4 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-12">
@@ -175,10 +218,20 @@ const Contact = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-75"
+                    disabled={isSubmitting}
                   >
-                    <Send className="mr-2 h-5 w-5" />
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-5 w-5" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>

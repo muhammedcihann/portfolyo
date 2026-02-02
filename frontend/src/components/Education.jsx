@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { GraduationCap, Award, Users, Calendar } from 'lucide-react';
 import { portfolioData } from '@/mock';
 
 const Education = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => sectionRef.current && observer.unobserve(sectionRef.current);
+  }, []);
+
   return (
-    <section id="education" className="py-20 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4">
+    <section id="education" ref={sectionRef} className="py-20 bg-white dark:bg-slate-900">
+      <div className={`container mx-auto px-4 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-12">

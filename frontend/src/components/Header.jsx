@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 const Header = ({ theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +13,31 @@ const Header = ({ theme, toggleTheme }) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = navItems.map(item => document.querySelector(item.href));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px' }
+    );
+
+    sections.forEach(section => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach(section => {
+        if (section) observer.unobserve(section);
+      });
+    };
   }, []);
 
   const navItems = [
@@ -33,6 +59,14 @@ const Header = ({ theme, toggleTheme }) => {
     }
   };
 
+  const getLinkClass = (href, isMobile = false) => {
+    const isActive = activeSection === href;
+    const baseClasses = isMobile ? 'block px-4 py-2' : 'px-3 py-2';
+    const activeClasses = 'text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-slate-800';
+    const inactiveClasses = 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800';
+    return `${baseClasses} text-sm font-medium transition-colors rounded-md ${isActive ? activeClasses : inactiveClasses}`;
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -47,7 +81,7 @@ const Header = ({ theme, toggleTheme }) => {
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, '#home')}
-            className="text-xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+            className="text-xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-all hover:scale-105"
           >
             MC
           </a>
@@ -59,7 +93,7 @@ const Header = ({ theme, toggleTheme }) => {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-md hover:bg-blue-50 dark:hover:bg-slate-800"
+                className={getLinkClass(item.href)}
               >
                 {item.label}
               </a>
@@ -98,20 +132,20 @@ const Header = ({ theme, toggleTheme }) => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
+        <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isMobileMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
+          <nav className="py-2 border-t border-gray-200 dark:border-gray-700">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="block px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors rounded-md"
+                className={getLinkClass(item.href, true)}
               >
                 {item.label}
               </a>
             ))}
           </nav>
-        )}
+        </div>
       </div>
     </header>
   );

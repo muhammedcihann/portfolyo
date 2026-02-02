@@ -11,12 +11,16 @@ import Projects from "@/components/Projects";
 import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import CommandMenu from "@/components/CommandMenu";
+import Chatbot from "@/components/Chatbot";
+import BackToTopButton from "@/components/BackToTopButton";
 
 function App() {
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme || 'light';
   });
+  const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -33,6 +37,7 @@ function App() {
 
   return (
     <div className="App">
+      <CommandMenu open={isCommandMenuOpen} setOpen={setIsCommandMenuOpen} toggleTheme={toggleTheme} />
       <Header theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />
@@ -46,6 +51,8 @@ function App() {
       </main>
       <Footer />
       <Toaster />
+      <Chatbot />
+      <BackToTopButton />
     </div>
   );
 }
