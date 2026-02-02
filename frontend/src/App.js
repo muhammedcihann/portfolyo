@@ -8,12 +8,12 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CommandMenu from "@/components/CommandMenu";
 import Chatbot from "@/components/Chatbot";
 import BackToTopButton from "@/components/BackToTopButton";
+import CVRequestDialog from "@/components/CVRequestDialog";
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -21,6 +21,7 @@ function App() {
     return savedTheme || 'light';
   });
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -37,22 +38,22 @@ function App() {
 
   return (
     <div className="App">
-      <CommandMenu open={isCommandMenuOpen} setOpen={setIsCommandMenuOpen} toggleTheme={toggleTheme} />
+      <CommandMenu open={isCommandMenuOpen} setOpen={setIsCommandMenuOpen} toggleTheme={toggleTheme} openCVModal={() => setIsCVModalOpen(true)} />
       <Header theme={theme} toggleTheme={toggleTheme} />
       <main>
-        <Hero />
+        <Hero openCVModal={() => setIsCVModalOpen(true)} />
         <About />
         <Experience />
         <Education />
         <Skills />
         <Projects />
-        <Blog />
         <Contact />
       </main>
       <Footer />
       <Toaster />
       <Chatbot />
       <BackToTopButton />
+      <CVRequestDialog isOpen={isCVModalOpen} setIsOpen={setIsCVModalOpen} />
     </div>
   );
 }

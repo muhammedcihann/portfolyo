@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { portfolioData } from '@/mock';
 
-const CommandMenu = ({ open, setOpen, toggleTheme }) => {
+const CommandMenu = ({ open, setOpen, toggleTheme, openCVModal }) => {
   useEffect(() => {
     const down = (e) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
@@ -37,6 +37,7 @@ const CommandMenu = ({ open, setOpen, toggleTheme }) => {
   };
 
   const openLink = (url) => {
+    // This function is now only for external links
     window.open(url, '_blank', 'noopener,noreferrer');
     setOpen(false);
   };
@@ -80,9 +81,9 @@ const CommandMenu = ({ open, setOpen, toggleTheme }) => {
             <Moon className="mr-2 h-4 w-4 hidden dark:inline-block" />
             <span>Toggle Theme</span>
           </Command.Item>
-          <Command.Item onSelect={() => openLink(portfolioData.personal.cvUrl)}>
+          <Command.Item onSelect={openCVModal}>
             <FileText className="mr-2 h-4 w-4" />
-            <span>Download CV</span>
+            <span>Request CV</span>
           </Command.Item>
         </Command.Group>
 

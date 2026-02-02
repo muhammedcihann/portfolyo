@@ -21,12 +21,14 @@ export const portfolioData = {
       location: "Istanbul, Turkiye",
       description: "I have been working as a Middleware and Communication Services Engineer Assistant, mainly focusing on mainframe and middleware technologies within critical banking systems. My responsibilities include maintaining middleware environments, resolving issues, preparing reports, and collaborating with teams to ensure reliable and secure communication services.",
       highlights: [
-        "Gained hands-on experience with CICS, IBM MQ, and RabbitMQ by configuring queues and defining transactions.",
-        "Involved in automation and process optimization on z/OS using JCL and REXX.",
-        "Designed and prepared reports and dashboards with SSRS for business decision-making.",
-        "Supported application integration across various systems."
+        "Performed CICS region startups in both production and non-production environments.",
+        "Defined and managed IBM MQ objects and CICS transactions.",
+        "Handled RabbitMQ installations and configurations.",
+        "Utilized JCL and REXX for various automation programs to streamline operations.",
+        "Conducted continuous system monitoring using tools like OMEGAMON.",
+        "Designed and generated a wide range of reports and dashboards using SSRS and Qlik."
       ],
-      technologies: ["CICS", "IBM MQ", "RabbitMQ", "z/OS", "JCL", "REXX", "SSRS"]
+      technologies: ["CICS", "IBM MQ", "RabbitMQ", "z/OS", "JCL", "REXX", "SSRS", "Qlik", "OMEGAMON"]
     }
   ],
 
@@ -52,7 +54,7 @@ export const portfolioData = {
       items: [
         { name: "IBM CICS" },
         { name: "IBM MQ" },
-        { name: "Rabbit MQ" },
+        { name: "RabbitMQ" },
         { name: "z/OS" },
         { name: "OMEGAMON" },
         { name: "JCL" },
@@ -95,29 +97,85 @@ export const portfolioData = {
 
   projects: [
     {
+      id: 7,
+      title: "CICS & MQ Environment Management",
+      description: "Responsible for the end-to-end management of CICS and IBM MQ environments, including region startups in production/non-production, and defining critical transactions and message queues.",
+      technologies: ["CICS", "IBM MQ", "z/OS"],
+      image: "https://images.unsplash.com/photo-1591799339385-91b53733541b?q=80&w=800&h=600&auto=format&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 8,
+      title: "Mainframe Automation Scripts",
+      description: "Developed and utilized various automation scripts using JCL and REXX to streamline batch processing, system maintenance tasks, and improve overall mainframe efficiency.",
+      technologies: ["JCL", "REXX", "z/OS"],
+      image: "https://images.unsplash.com/photo-1526379095098-d64698bf3824?q=80&w=800&h=600&auto=format&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 9,
+      title: "RabbitMQ Infrastructure Setup",
+      description: "Engineered and managed RabbitMQ installations and configurations, building a robust messaging backbone for distributed applications and ensuring reliable data flow.",
+      technologies: ["RabbitMQ", "Linux", "System Architecture"],
+      image: "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?w=800&h=600&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
       id: 1,
-      title: "Middleware Monitoring Dashboard",
-      description: "Developed internal monitoring dashboard for IBM MQ message flows and queue health metrics.",
-      technologies: ["IBM MQ", "SSRS", "MS SQL"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
+      title: "System Monitoring & Reporting Solutions",
+      description: "Continuously monitored system health (OMEGAMON) and message flows (IBM MQ). Designed and generated a wide range of insightful reports and dashboards using SSRS and Qlik to support data-driven decisions.",
+      technologies: ["OMEGAMON", "IBM MQ", "SSRS", "Qlik", "MS SQL Server"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
     },
     {
       id: 2,
       title: "University Hackathon Platform",
       description: "Founded and organized university's first hackathon event.",
       technologies: ["Leadership", "Community Building"],
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop"
-    }
-  ],
-
-  blogPosts: [
+      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
+    },
     {
-      id: 1,
-      title: "Understanding IBM CICS",
-      excerpt: "An introduction to IBM CICS and enterprise transaction processing.",
-      date: "2025-01-15",
-      readTime: "5 min read",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop"
+      id: 3,
+      title: "AAIA - Disaster Communication Network",
+      description: "A web-based application designed to facilitate communication and coordination during natural disasters, helping users to report their status and find help.",
+      technologies: ["React", "Node.js", "Socket.IO", "MongoDB"],
+      image: "https://images.unsplash.com/photo-1542338249-8833d399b35d?w=800&h=600&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 4,
+      title: "Movibase - Movie & TV Show Database",
+      description: "A comprehensive movie and TV show tracking website, similar to IMDb or TMDB, allowing users to browse, rate, and review content.",
+      technologies: ["React", "Express", "PostgreSQL", "TMDB API"],
+      image: "https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=800&h=600&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 5,
+      title: "Human Resources Management System (HRMS)",
+      description: "A full-featured management program for HR departments, handling employee data, payroll, leave requests, and performance reviews.",
+      technologies: ["Java", "Spring Boot", "SQL Server", "React"],
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 6,
+      title: "ParlakFikirAjansı - Ad Management Dashboard",
+      description: "A custom dashboard for an advertising agency to manage campaigns, track performance metrics, and visualize client data.",
+      technologies: ["React", "Chart.js", "Node.js", "Express"],
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      liveUrl: "#",
+      githubUrl: "#"
     }
   ],
 

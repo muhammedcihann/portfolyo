@@ -51,7 +51,7 @@ const Projects = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioData.projects.map((project, index) => (
               <Dialog key={project.id} >
                 <Card className={`border-none shadow-xl hover:shadow-2xl transition-all duration-500 ease-out overflow-hidden group flex flex-col ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 200}ms` }}>

@@ -5,42 +5,6 @@ import { portfolioData } from '@/mock';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    {
-      icon: <Github className="h-5 w-5" />,
-      href: `https://github.com/${portfolioData.personal.github}`,
-      label: 'GitHub'
-    },
-    {
-      icon: <Linkedin className="h-5 w-5" />,
-      href: `https://${portfolioData.personal.linkedin}`,
-      label: 'LinkedIn'
-    },
-    {
-      icon: <Mail className="h-5 w-5" />,
-      href: `mailto:${portfolioData.personal.email}`,
-      label: 'Email'
-    }
-  ];
-
-  const footerLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Blog', href: '#blog' },
-    { label: 'Contact', href: '#contact' }
-  ];
-
-  const scrollToSection = (e, href) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
       <div className="container mx-auto px-4 py-16 text-center">
@@ -52,34 +16,20 @@ const Footer = () => {
           System Engineer Assistant passionate about building scalable systems and fostering technical communities.
         </p>
 
-        {/* Quick Links */}
-        <nav className="flex justify-center flex-wrap gap-x-6 gap-y-2 mb-8">
-          {footerLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              onClick={(e) => scrollToSection(e, link.href)}
-              className="text-gray-300 hover:text-blue-400 transition-colors duration-300 font-medium"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Social Links */}
-        <div className="flex justify-center space-x-4 mb-12">
-          {socialLinks.map((social, index) => (
-            <a
-              key={index}
-              href={social.href}
-              target={social.href.startsWith('http') ? '_blank' : undefined}
-              rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="p-3 rounded-full bg-blue-800 hover:bg-blue-700 transition-all duration-300 hover:scale-110"
-              aria-label={social.label}
-            >
-              {social.icon}
-            </a>
-          ))}
+        {/* Contact Info */}
+        <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-4 mb-12 font-medium">
+          <a href={`mailto:${portfolioData.personal.email}`} className="flex items-center text-gray-300 hover:text-blue-400 transition-colors duration-300">
+            <Mail className="h-5 w-5 mr-2" />
+            {portfolioData.personal.email}
+          </a>
+          <a href={`https://github.com/${portfolioData.personal.github}`} target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 hover:text-blue-400 transition-colors duration-300">
+            <Github className="h-5 w-5 mr-2" />
+            GitHub
+          </a>
+          <a href={`https://${portfolioData.personal.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 hover:text-blue-400 transition-colors duration-300">
+            <Linkedin className="h-5 w-5 mr-2" />
+            LinkedIn
+          </a>
         </div>
 
         {/* Bottom Bar */}

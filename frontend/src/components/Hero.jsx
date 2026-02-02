@@ -3,7 +3,7 @@ import { ArrowDown, Linkedin, Mail, FileText, Github, Briefcase } from 'lucide-r
 import { Button } from '@/components/ui/button';
 import { portfolioData } from '@/mock';
 
-const Hero = () => {
+const Hero = ({ openCVModal }) => {
   const [displayText, setDisplayText] = useState('');
   const fullText = portfolioData.personal.tagline;
   const [isMounted, setIsMounted] = useState(false);
@@ -77,11 +77,14 @@ const Hero = () => {
                 <Mail className="mr-2 h-5 w-5" />
                 Get In Touch
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-gray-400 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <a href={portfolioData.personal.cvUrl} target="_blank" rel="noopener noreferrer">
-                  <FileText className="mr-2 h-5 w-5" />
-                  Download CV
-                </a>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-gray-400 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                onClick={openCVModal}
+              >
+                <FileText className="mr-2 h-5 w-5" />
+                Request CV
               </Button>
             </div>
 
